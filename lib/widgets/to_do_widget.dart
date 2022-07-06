@@ -1,40 +1,59 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/helper/color.dart';
+import 'package:to_do_app/helper/curve_date.dart';
 
-class MyToDoWidget extends StatefulWidget {
-  const MyToDoWidget({Key? key}) : super(key: key);
+import '../helper/constant_helper.dart';
+import '../helper/enum_priority.dart';
 
-  @override
-  State<MyToDoWidget> createState() => _MyToDoWidgetState();
-}
+class MyToDoWidget extends StatelessWidget {
+  const MyToDoWidget({
+    Key? key,
+    required this.visibleBadge,
+    required this.dateTimeToDoString,
+    required this.prorityToDoEnum,
+    required this.titleToDO,
+    required this.subtitleToDO,
+  }) : super(key: key);
 
-class _MyToDoWidgetState extends State<MyToDoWidget> {
+  final bool visibleBadge;
+  final String dateTimeToDoString;
+  final ProrityToDoEnum prorityToDoEnum;
+  final String titleToDO;
+  final String subtitleToDO;
+
   @override
   Widget build(BuildContext context) {
-    TextTheme _textTheme = Theme.of(context).textTheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return DecoratedBox(
       decoration: BoxDecoration(
+        color: Colors.white,
         border: Border(
-          bottom: BorderSide(width: 16.0, color: ColorsHelper.myGray),
+          bottom: BorderSide(width: 2.w, color: ColorsHelper.myGray),
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            color: ColorsHelper.myGreen,
-            width: 216.w,
-            height: 48.w,
-            child: Center(
-                child: Text(
-              'Today',
-              style: _textTheme.subtitle2?.copyWith(color: Colors.white),
-            )),
+          Visibility(
+            visible: visibleBadge,
+            child: Row(
+              children: [
+                const Expanded(child: SizedBox()),
+                CustomPaint(
+                  painter: CurveDate(),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        bottom: 5.h, left: 60.w, top: 5.h, right: 30.w),
+                    child: Text(
+                      ConstantHelper.getDateCustom(dateTimeToDoString),
+                      style: textTheme.subtitle2?.copyWith(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           ListTile(
             contentPadding: EdgeInsets.symmetric(horizontal: 50.w),
@@ -43,53 +62,58 @@ class _MyToDoWidgetState extends State<MyToDoWidget> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.star_border_rounded,
-                    )),
-                Container(
-                  height: 48.w,
+                  onPressed: () {
+                    // TODO: star todo
+                  },
+                  icon: const Icon(
+                    Icons.star_border_rounded,
+                  ),
+                ),
+                DecoratedBox(
                   decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset.zero,
-                          blurRadius: 5,
-                          spreadRadius: 0,
-                        )
-                      ]),
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset.zero,
+                        blurRadius: 2,
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
                   child: CircleAvatar(
-                    radius: 48.w,
-                    backgroundColor: ColorsHelper.myHighPriority,
+                    radius: 24.w,
+                    backgroundColor:
+                        ConstantHelper.getColorPriority(prorityToDoEnum),
                   ),
                 ),
               ],
             ),
             title: Text(
-              'Metting with client',
-              style: _textTheme.headline3,
+              titleToDO,
+              style: textTheme.headline3,
             ),
             subtitle: Text(
-              'Official',
-              style: _textTheme.subtitle1,
+              subtitleToDO,
+              style: textTheme.subtitle1,
             ),
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '10:00',
-                  style: _textTheme.headline3,
+                  ConstantHelper.getHourOfDate(dateTimeToDoString),
+                  style: textTheme.headline3
+                      ?.copyWith(fontWeight: FontWeight.w600),
                 ),
                 RichText(
                   text: TextSpan(
-                    style: _textTheme.headline3,
-                    children: const [
+                    style: textTheme.headline3
+                        ?.copyWith(color: Colors.black.withOpacity(0.75)),
+                    children: [
                       TextSpan(
-                        text: 'AM',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        text:
+                            ConstantHelper.getPMorAMOfDate(dateTimeToDoString),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
