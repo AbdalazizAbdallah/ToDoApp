@@ -9,7 +9,7 @@ import '../helper/enum_priority.dart';
 class MyToDoWidget extends StatelessWidget {
   const MyToDoWidget({
     Key? key,
-    required this.visibleBadge,
+    this.visibleBadge = false,
     required this.dateTimeToDoString,
     required this.prorityToDoEnum,
     required this.titleToDO,

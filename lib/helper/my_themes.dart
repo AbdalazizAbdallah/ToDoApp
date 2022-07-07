@@ -31,6 +31,6 @@ class MyThemes{
                 color: Colors.black,
               ),
             ),
-            scaffoldBackgroundColor: Colors.white,
+            scaffoldBackgroundColor: ColorsHelper.myGrayScaffold,
           );
 }
