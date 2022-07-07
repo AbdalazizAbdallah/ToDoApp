@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/helper/enum_priority.dart';
+import 'package:to_do_app/routes/home_page.dart';
 import 'package:to_do_app/widgets/to_do_widget.dart';
 
 import 'helper/my_themes.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: MyThemes.themeDataPrimaryLight,
-          home: const MyHomePage(),
+          home: const HomePage(),
         );
       },
     );
