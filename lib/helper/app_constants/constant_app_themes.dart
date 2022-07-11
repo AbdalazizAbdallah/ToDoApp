@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'color.dart';
+import 'app_constants/constant_app_color.dart';
 
 class MyThemes{
    static ThemeData themeDataPrimaryLight = ThemeData(
             // primarySwatch: Colors.blue,
             appBarTheme: AppBarTheme(
-              color: ColorsHelper.myPuprle,
+              color: ConstantAppColorsHelper.myPuprle,
             ),
             textTheme: TextTheme(
               headline3: GoogleFonts.roboto(
@@ -31,6 +31,6 @@ class MyThemes{
                 color: Colors.black,
               ),
             ),
-            scaffoldBackgroundColor: ColorsHelper.myGrayScaffold,
+            scaffoldBackgroundColor: ConstantAppColorsHelper.myGrayScaffold,
           );
 }
