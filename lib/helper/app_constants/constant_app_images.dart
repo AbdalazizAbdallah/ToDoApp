@@ -1,7 +1,7 @@
 
 
 
-class AppImageHelper{
+class ConstantAppImageHelper{
 
   static const String _imagePath = 'images/';
   static const String alarmPath = '${_imagePath}alarm.svg';
@@ -12,7 +12,7 @@ class AppImageHelper{
   static const String noTaskPath = '${_imagePath}no_task.svg';
 
 
-  AppImageHelper._();
+  ConstantAppImageHelper._();
 
   
 }

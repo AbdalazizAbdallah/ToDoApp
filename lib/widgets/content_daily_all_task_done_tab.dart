@@ -2,9 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../helper/app_images.dart';
-import '../helper/color.dart';
+import '../helper/app_constants/constant_app_color.dart';
+import '../helper/app_constants/constant_app_images.dart';
 
 class ContentDailyAllTaskDoneTab extends StatelessWidget {
   const ContentDailyAllTaskDoneTab({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class ContentDailyAllTaskDoneTab extends StatelessWidget {
           SizedBox(
             height: 455.w,
             width: 579.h,
-            child: SvgPicture.asset(AppImageHelper.noTaskPath),
+            child: SvgPicture.asset(ConstantAppImageHelper.noTaskPath),
           ),
           SizedBox(
             height: 60.h,
@@ -28,7 +27,7 @@ class ContentDailyAllTaskDoneTab extends StatelessWidget {
           Text(
             'All Done For Now',
             style: textTheme.headline3
-                ?.copyWith(fontSize: 48.sp, color: ColorsHelper.myPuprle),
+                ?.copyWith(fontSize: 48.sp, color: ConstantAppColorsHelper.myPuprle),
           ),
           SizedBox(
             height: 40.h,
@@ -37,7 +36,7 @@ class ContentDailyAllTaskDoneTab extends StatelessWidget {
             'Next Task',
             style: textTheme.subtitle1?.copyWith(
                 fontWeight: FontWeight.w300,
-                color: ColorsHelper.myLightBlack.withOpacity(0.5)),
+                color: ConstantAppColorsHelper.myLightBlack.withOpacity(0.5)),
           ),
           SizedBox(
             height: 6.h,
@@ -45,7 +44,7 @@ class ContentDailyAllTaskDoneTab extends StatelessWidget {
           Text(
             'Tomorrow 3:55 PM',
             style: textTheme.subtitle1
-                ?.copyWith( fontWeight: FontWeight.w500,color: ColorsHelper.myLightBlack.withOpacity(0.5)),
+                ?.copyWith( fontWeight: FontWeight.w500,color: ConstantAppColorsHelper.myLightBlack.withOpacity(0.5)),
           ),
           SizedBox(
             height: 22.h,
@@ -53,7 +52,7 @@ class ContentDailyAllTaskDoneTab extends StatelessWidget {
           Text(
             'Time for a Break',
             style:
-                textTheme.headline3?.copyWith( fontWeight: FontWeight.w600,color: ColorsHelper.myLightBlack),
+                textTheme.headline3?.copyWith( fontWeight: FontWeight.w600,color: ConstantAppColorsHelper.myLightBlack),
           ),
         ],
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../helper/color.dart';
+import '../helper/app_constants/constant_app_color.dart';
 
 class MyCustomSlidableAction extends StatelessWidget {
   const MyCustomSlidableAction({

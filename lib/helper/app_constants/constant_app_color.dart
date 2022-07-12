@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorsHelper {
+class ConstantAppColorsHelper {
   static Color myPuprle = const Color(0xFF7646FF);
   static Color myTooHighPriority = const Color(0xFFFC5565);
   static Color myHighPriority = const Color(0xFFFA9B4A);

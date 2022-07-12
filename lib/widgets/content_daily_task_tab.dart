@@ -4,9 +4,13 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/widgets/to_do_widget.dart';
 
-import '../helper/color.dart';
+import '../helper/app_constants/constant_app_color.dart';
+import '../helper/constant_helper.dart';
 import '../helper/enum_priority.dart';
+import '../model/to_do.dart';
 import 'my_custom_slidable_action.dart';
+import "package:collection/collection.dart";
+
 
 class ContentDailyTaskTab extends StatelessWidget {
   const ContentDailyTaskTab({
@@ -50,7 +54,7 @@ class ContentDailyTaskTab extends StatelessWidget {
                         Text(
                           'today'.toUpperCase(),
                           style: textTheme.headline3?.copyWith(
-                              fontSize: 54.sp, color: ColorsHelper.myPuprle),
+                              fontSize: 54.sp, color: ConstantAppColorsHelper.myPuprle),
                         ),
                         SizedBox(
                           height: 15.h,
@@ -70,7 +74,7 @@ class ContentDailyTaskTab extends StatelessWidget {
                         Text(
                           'Completed',
                           style: textTheme.headline3?.copyWith(
-                            color: ColorsHelper.myGreen,
+                            color: ConstantAppColorsHelper.myGreen,
                           ),
                         ),
                         SizedBox(
@@ -79,7 +83,7 @@ class ContentDailyTaskTab extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                               style: textTheme.headline3?.copyWith(
-                                color: ColorsHelper.myGreen,
+                                color: ConstantAppColorsHelper.myGreen,
                               ),
                               children: const [
                                 TextSpan(
@@ -109,7 +113,7 @@ class ContentDailyTaskTab extends StatelessWidget {
                   children: [
                     MyCustomSlidableAction(
                         onPressed: (context) {},
-                        colorsAction: ColorsHelper.myGreen,
+                        colorsAction: ConstantAppColorsHelper.myGreen,
                         iconAction: Icons.task_alt,
                         textAction: 'Done'),
                   ],
@@ -119,9 +123,16 @@ class ContentDailyTaskTab extends StatelessWidget {
                   motion: const ScrollMotion(),
                   children: [
                     MyCustomSlidableAction(
-                        onPressed: (context) {},
+                        onPressed: (context) {
+                          Map<String,List<ToDoEntity>> k = groupBy<ToDoEntity,String>(
+                              ConstantHelper.listContent, (p0) => DateFormat.yMd().format(DateTime.tryParse(p0.dateTimeToDoString)??DateTime.now()));
+
+                          k.forEach((key, value) {
+                            debugPrint('$key ------ $value');
+                          });
+                          },
                         iconAction: Icons.schedule,
-                        colorsAction: ColorsHelper.myRedAction,
+                        colorsAction: ConstantAppColorsHelper.myRedAction,
                         textAction: 'Later'),
                   ],
                 ),

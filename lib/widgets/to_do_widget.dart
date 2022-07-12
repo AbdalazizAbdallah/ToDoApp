@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:to_do_app/helper/color.dart';
-import 'package:to_do_app/helper/curve_date.dart';
+import 'package:to_do_app/helper/app_constants/constant_app_color.dart';
+import 'package:to_do_app/helper/customs_shape/curve_date.dart';
 
+import '../helper/app_date_helper.dart';
 import '../helper/constant_helper.dart';
 import '../helper/enum_priority.dart';
 
@@ -30,7 +31,7 @@ class MyToDoWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
-          bottom: BorderSide(width: 2.w, color: ColorsHelper.myGray),
+          bottom: BorderSide(width: 2.w, color: ConstantAppColorsHelper.myGray),
         ),
       ),
       child: Column(
@@ -47,7 +48,7 @@ class MyToDoWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         bottom: 5.h, left: 60.w, top: 5.h, right: 30.w),
                     child: Text(
-                      ConstantHelper.getDateCustom(dateTimeToDoString),
+                      AppDateHelper.getDateCustom(dateTimeToDoString),
                       style: textTheme.subtitle2?.copyWith(color: Colors.white),
                     ),
                   ),
@@ -101,7 +102,7 @@ class MyToDoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  ConstantHelper.getHourOfDate(dateTimeToDoString),
+                  AppDateHelper.getHourOfDate(dateTimeToDoString),
                   style: textTheme.headline3
                       ?.copyWith(fontWeight: FontWeight.w600),
                 ),
@@ -112,7 +113,7 @@ class MyToDoWidget extends StatelessWidget {
                     children: [
                       TextSpan(
                         text:
-                            ConstantHelper.getPMorAMOfDate(dateTimeToDoString),
+                            AppDateHelper.getPMorAMOfDate(dateTimeToDoString),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
