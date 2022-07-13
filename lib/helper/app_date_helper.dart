@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:intl/intl.dart';
 
 class AppDateHelper {
@@ -76,5 +78,12 @@ class AppDateHelper {
   static bool isSameDay(String stringDate){
     DateTime pickedDate = DateTime.tryParse(stringDate) ?? DateTime.now();
     return DateFormat.yMd().format(pickedDate)==DateFormat.yMd().format(DateTime.now());
+  }
+
+  static String generateDateTimeRandomly(){
+    DateTime dateTime = DateTime.now();
+    Random random = Random();
+    int day = random.nextInt(30)+1;
+    return DateTime(2022,7,day,dateTime.hour,dateTime.minute,dateTime.second).toString();
   }
 }

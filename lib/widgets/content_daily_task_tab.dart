@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_app/helper/app_date_helper.dart';
 import 'package:to_do_app/widgets/to_do_widget.dart';
-
 import '../helper/app_constants/constant_app_color.dart';
-import '../helper/constant_helper.dart';
-import '../helper/enum_priority.dart';
 import '../model/to_do.dart';
 import 'my_custom_slidable_action.dart';
-import "package:collection/collection.dart";
-
 
 class ContentDailyTaskTab extends StatelessWidget {
   const ContentDailyTaskTab({
     Key? key,
+    required this.listOfToEntity,
   }) : super(key: key);
+
+  final List<ToDoEntity> listOfToEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,8 @@ class ContentDailyTaskTab extends StatelessWidget {
                         Text(
                           'today'.toUpperCase(),
                           style: textTheme.headline3?.copyWith(
-                              fontSize: 54.sp, color: ConstantAppColorsHelper.myPuprle),
+                              fontSize: 54.sp,
+                              color: ConstantAppColorsHelper.myPuprle),
                         ),
                         SizedBox(
                           height: 15.h,
@@ -104,7 +104,7 @@ class ContentDailyTaskTab extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: listOfToEntity.length,
             itemBuilder: (context, index) {
               return Slidable(
                 startActionPane: ActionPane(
@@ -112,7 +112,9 @@ class ContentDailyTaskTab extends StatelessWidget {
                   motion: const ScrollMotion(),
                   children: [
                     MyCustomSlidableAction(
-                        onPressed: (context) {},
+                        onPressed: (context) {
+                          // TODO make ToDo Done
+                        },
                         colorsAction: ConstantAppColorsHelper.myGreen,
                         iconAction: Icons.task_alt,
                         textAction: 'Done'),
@@ -124,26 +126,23 @@ class ContentDailyTaskTab extends StatelessWidget {
                   children: [
                     MyCustomSlidableAction(
                         onPressed: (context) {
-                          Map<String,List<ToDoEntity>> k = groupBy<ToDoEntity,String>(
-                              ConstantHelper.listContent, (p0) => DateFormat.yMd().format(DateTime.tryParse(p0.dateTimeToDoString)??DateTime.now()));
-
-                          k.forEach((key, value) {
-                            debugPrint('$key ------ $value');
-                          });
-                          },
+                          // TODO make ToDo later
+                        },
                         iconAction: Icons.schedule,
                         colorsAction: ConstantAppColorsHelper.myRedAction,
                         textAction: 'Later'),
                   ],
                 ),
                 child: MyToDoWidget(
-                    dateTimeToDoString:
-                        '2022-07-0${index + 1} $index:0${(index * 2)}:16.638478',
-                    prorityToDoEnum: index % 2 == 0
-                        ? ProrityToDoEnum.high
-                        : ProrityToDoEnum.tooHigh,
-                    titleToDO: 'Metting with client $index',
-                    subtitleToDO: 'Official'),
+                  visibleBadge: true,
+                  toDo: ToDoEntity.todo(
+                      dateTimeToDoString:
+                      listOfToEntity[index].dateTimeToDoString,
+                      prorityToDoEnum: listOfToEntity[index].prorityToDoEnum,
+                      titleToDO: listOfToEntity[index].titleToDO,
+                      subtitleToDO: listOfToEntity[index].subtitleToDO,
+                      isFavorite: listOfToEntity[index].isFavorite),
+                ),
               );
             },
           ),

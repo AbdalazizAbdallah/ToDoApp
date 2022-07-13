@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/helper/app_constants/constant_app_color.dart';
-import 'package:to_do_app/helper/customs_shape/curve_date.dart';
+import 'package:to_do_app/helper/customs_shape/curve_date_weekly.dart';
+import 'package:to_do_app/model/to_do.dart';
 
 import '../helper/app_date_helper.dart';
 import '../helper/constant_helper.dart';
-import '../helper/enum_priority.dart';
+import '../helper/customs_shape/cuve_date.dart';
+import '../helper/enum.dart';
 
 class MyToDoWidget extends StatelessWidget {
+
   const MyToDoWidget({
     Key? key,
     this.visibleBadge = false,
-    required this.dateTimeToDoString,
-    required this.prorityToDoEnum,
-    required this.titleToDO,
-    required this.subtitleToDO,
+    required this.toDo,
   }) : super(key: key);
 
+  final ToDoEntity toDo;
   final bool visibleBadge;
-  final String dateTimeToDoString;
-  final ProrityToDoEnum prorityToDoEnum;
-  final String titleToDO;
-  final String subtitleToDO;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +45,7 @@ class MyToDoWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         bottom: 5.h, left: 60.w, top: 5.h, right: 30.w),
                     child: Text(
-                      AppDateHelper.getDateCustom(dateTimeToDoString),
+                      AppDateHelper.getDateCustom(toDo.dateTimeToDoString),
                       style: textTheme.subtitle2?.copyWith(color: Colors.white),
                     ),
                   ),
@@ -66,7 +63,10 @@ class MyToDoWidget extends StatelessWidget {
                   onPressed: () {
                     // TODO: star todo
                   },
-                  icon: const Icon(
+                  icon: toDo.isFavorite ? const Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ) : const Icon(
                     Icons.star_border_rounded,
                   ),
                 ),
@@ -85,24 +85,24 @@ class MyToDoWidget extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 24.w,
                     backgroundColor:
-                        ConstantHelper.getColorPriority(prorityToDoEnum),
+                        ConstantHelper.getColorPriority(toDo.prorityToDoEnum),
                   ),
                 ),
               ],
             ),
             title: Text(
-              titleToDO,
+              toDo.titleToDO,
               style: textTheme.headline3,
             ),
             subtitle: Text(
-              subtitleToDO,
+              toDo.subtitleToDO,
               style: textTheme.subtitle1,
             ),
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  AppDateHelper.getHourOfDate(dateTimeToDoString),
+                  AppDateHelper.getHourOfDate(toDo.dateTimeToDoString),
                   style: textTheme.headline3
                       ?.copyWith(fontWeight: FontWeight.w600),
                 ),
@@ -113,7 +113,7 @@ class MyToDoWidget extends StatelessWidget {
                     children: [
                       TextSpan(
                         text:
-                            AppDateHelper.getPMorAMOfDate(dateTimeToDoString),
+                            AppDateHelper.getPMorAMOfDate(toDo.dateTimeToDoString),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],

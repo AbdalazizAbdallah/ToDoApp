@@ -7,98 +7,13 @@ import 'package:to_do_app/helper/app_constants/constant_app_color.dart';
 import 'package:to_do_app/model/to_do.dart';
 import "package:collection/collection.dart";
 
-import 'enum_priority.dart';
+import 'enum.dart';
 
 class ConstantHelper {
-  static List<ToDoEntity> listContent = [
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 7, 17, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work math',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 7, 20, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work arabic',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 7, 21, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Exam Java2',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 7, 22, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Play Football',
-        subtitleToDO: 'Official'),
-    //---------------------------------------------------------
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 8, 17, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work math',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 8, 20, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work arabic',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 8, 21, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Exam Java2',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 8, 22, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Play Football',
-        subtitleToDO: 'Official'),
-    //--------------------------------------------------------
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 9, 17, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work math',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 9, 20, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work arabic',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 9, 21, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Exam Java2',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 9, 9, 22, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Play Football',
-        subtitleToDO: 'Official'),
-    //----------------------------------
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 7, 10, 17, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work math',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 7, 10, 20, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Home Work arabic',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 7, 11, 21, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Exam Java2',
-        subtitleToDO: 'Official'),
-    ToDoEntity(
-        dateTimeToDoString: DateTime(2022, 7, 11, 22, 30).toString(),
-        prorityToDoEnum: ProrityToDoEnum.high,
-        titleToDO: 'Play Football',
-        subtitleToDO: 'Official'),
-  ];
 
-  static Map<String, List<ToDoEntity>> groupingByDateToDoEntity() {
+  static Map<String, List<ToDoEntity>> groupingByDateToDoEntity(List<ToDoEntity> listOfEntity) {
     Map<String, List<ToDoEntity>> map = groupBy<ToDoEntity, String>(
-        ConstantHelper.listContent,
+        listOfEntity,
         (p0) => DateTime.tryParse(p0.dateTimeToDoString)
             .toString()
             .substring(0, 10));

@@ -4,14 +4,18 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/helper/app_constants/constant_app_color.dart';
 import 'package:to_do_app/helper/constant_helper.dart';
-import 'package:to_do_app/helper/customs_shape/cuve_date_weekly.dart';
+import 'package:to_do_app/helper/customs_shape/cuve_date.dart';
 import 'package:to_do_app/widgets/to_do_widget.dart';
 
 import '../helper/app_date_helper.dart';
+import '../helper/customs_shape/curve_date_weekly.dart';
 import '../model/to_do.dart';
 
 class PageWeeklyTab extends StatefulWidget {
-  const PageWeeklyTab({Key? key}) : super(key: key);
+  const PageWeeklyTab({Key? key,
+  required this.listOfToDo,
+  }) : super(key: key);
+  final List<ToDoEntity>? listOfToDo;
 
   @override
   State<PageWeeklyTab> createState() => _PageWeeklyTabState();
@@ -28,17 +32,17 @@ class _PageWeeklyTabState extends State<PageWeeklyTab> {
   void initState() {
     super.initState();
 
-    textTheme = Theme.of(context).textTheme;
-
-    groupingByDateToDoEntity = ConstantHelper.groupingByDateToDoEntity();
+    groupingByDateToDoEntity = ConstantHelper.groupingByDateToDoEntity(widget.listOfToDo??[]);
     listOfKey = groupingByDateToDoEntity.keys.toList();
     itemList = groupingByDateToDoEntity.values.toList();
     datOfWeeks =
-        AppDateHelper.getDaysOfWeek(pickedDate: '2022-07-18 22:38:27.654812');
+        AppDateHelper.getDaysOfWeek(pickedDate: '2022-07-13 22:38:27.654812');
   }
 
   @override
   Widget build(BuildContext context) {
+    textTheme = Theme.of(context).textTheme;
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -63,13 +67,11 @@ class _PageWeeklyTabState extends State<PageWeeklyTab> {
                 children: List<Widget>.generate(datOfWeeks.length, (index) {
                   Widget child;
                   if (!AppDateHelper.isSameDay(datOfWeeks[index])) {
-                    child =
-                        getDayOfWeekWidget(false, datOfWeeks[index]);
+                    child = getDayOfWeekWidget(false, datOfWeeks[index]);
                   } else {
                     debugPrint(
                         '${AppDateHelper.isSameDay(datOfWeeks[index])} ---${DateTime.now()}--- ${datOfWeeks[index]}');
-                    child =
-                        getDayOfWeekWidget(true, datOfWeeks[index]);
+                    child = getDayOfWeekWidget(true, datOfWeeks[index]);
                   }
                   return Expanded(child: child);
                 }),
@@ -101,10 +103,7 @@ class _PageWeeklyTabState extends State<PageWeeklyTab> {
                     ),
                     for (ToDoEntity item in itemList[index])
                       MyToDoWidget(
-                        dateTimeToDoString: item.dateTimeToDoString,
-                        prorityToDoEnum: item.prorityToDoEnum,
-                        titleToDO: item.titleToDO,
-                        subtitleToDO: item.subtitleToDO,
+                        toDo: item,
                       )
                   ],
                 );

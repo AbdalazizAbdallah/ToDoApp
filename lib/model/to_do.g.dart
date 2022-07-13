@@ -12,7 +12,7 @@ ToDoEntity _$ToDoEntityFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['title'],
   );
   return ToDoEntity(
-    json['dateTimeToDoString'] as String? ?? '',
+    json['dateTimeToDoString'] as String? ?? AppDateHelper.generateDateTimeRandomly(),
     $enumDecodeNullable(_$ProrityToDoEnumEnumMap, json['prorityToDoEnum']) ??
         ProrityToDoEnum.tooHigh,
     json['title'] as String,

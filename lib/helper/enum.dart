@@ -2,6 +2,11 @@ enum ProrityToDoEnum{
   tooHigh,
   high,
   medium,
-  low
+  low,
 }
 
+enum ToDoStatusEnum{
+  done,
+  later,
+  none,
+}
