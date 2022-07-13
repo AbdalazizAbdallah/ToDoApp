@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/helper/app_constants/constant_app_color.dart';
 
-class CurveDate extends CustomPainter{
+class CurveDateWeekly extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
  
