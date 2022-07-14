@@ -6,7 +6,4 @@ class ApiService{
   static const String toDoPath = 'todos';
 
 
-
-
-
 }

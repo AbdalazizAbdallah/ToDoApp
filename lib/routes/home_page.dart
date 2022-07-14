@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return ChangeNotifierProvider(
-      create: (context)=> RequestHttpToDoProvider(),
+      create: (context) => RequestHttpToDoProvider(),
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -89,33 +89,45 @@ class _HomePageState extends State<HomePage> {
                         hintText: 'Search',
                         suffixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: ConstantAppColorsHelper.myPuprle),
+                          borderSide: BorderSide(
+                              color: ConstantAppColorsHelper.myPuprle),
                         ),
                       ),
                     ),
                   ),
-                  TabBar(tabs: [
-                    Tab(
-                      text: 'Daily'.toUpperCase(),
-                    ),
-                    Tab(
-                      text: 'Weekly'.toUpperCase(),
-                    ),
-                  ],),
+                  TabBar(
+                    tabs: [
+                      Tab(
+                        text: 'Daily'.toUpperCase(),
+                      ),
+                      Tab(
+                        text: 'Weekly'.toUpperCase(),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
           body: Consumer<RequestHttpToDoProvider>(
-            builder: (context, value, child) => TabBarView(children: [
-              PageDailyTab(listOfToDo: value.list),
-              PageWeeklyTab(listOfToDo: value.list),
-            ],),
+            builder: (context, value, child) => TabBarView(
+              children: [
+                PageDailyTab(listOfToDo: value.list),
+                PageWeeklyTab(listOfToDo: value.list),
+              ],
+            ),
+          ),
+          floatingActionButton:  Consumer<RequestHttpToDoProvider>(
+              builder: (context, value, child) => FloatingActionButton(
+              onPressed: () {
+                value.listOfEntity();
+                debugPrint('--------------------');
+              },
+                child: const Icon(Icons.add),
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-
