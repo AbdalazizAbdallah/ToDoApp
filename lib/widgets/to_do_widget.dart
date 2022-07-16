@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/helper/app_constants/constant_app_color.dart';
-import 'package:to_do_app/helper/customs_shape/curve_date_weekly.dart';
 import 'package:to_do_app/model/to_do.dart';
 
 import '../helper/app_date_helper.dart';
 import '../helper/constant_helper.dart';
 import '../helper/customs_shape/cuve_date.dart';
-import '../helper/enum.dart';
 
 class MyToDoWidget extends StatelessWidget {
 
@@ -24,13 +22,8 @@ class MyToDoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          bottom: BorderSide(width: 2.w, color: ConstantAppColorsHelper.myGray),
-        ),
-      ),
+    return Material(
+      color: Colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -122,6 +115,7 @@ class MyToDoWidget extends StatelessWidget {
               ],
             ),
           ),
+          Divider(height: 2.w, color: ConstantAppColorsHelper.myGray),
         ],
       ),
     );

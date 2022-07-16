@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/helper/app_date_helper.dart';
 import 'package:to_do_app/widgets/to_do_widget.dart';
 import '../helper/app_constants/constant_app_color.dart';
 import '../model/to_do.dart';
@@ -134,7 +133,6 @@ class ContentDailyTaskTab extends StatelessWidget {
                   ],
                 ),
                 child: MyToDoWidget(
-                  visibleBadge: true,
                   toDo: ToDoEntity.todo(
                       dateTimeToDoString:
                       listOfToEntity[index].dateTimeToDoString,
