@@ -11,7 +11,7 @@ class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
     Key? key,
     required this.title,
-    required this.visibleAddIcon,
+    this.visibleAddIcon = true,
   }) : super(key: key);
 
   final String title ;
@@ -20,6 +20,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0,
       titleSpacing: 0,
       title: Text(title),
       actions: [

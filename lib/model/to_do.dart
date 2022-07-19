@@ -8,6 +8,9 @@ part 'to_do.g.dart';
 @JsonSerializable()
 class ToDoEntity {
 
+  @JsonKey(required:true,name: 'id')
+  int id;
+
   @JsonKey(defaultValue: '')
   String dateTimeToDoString;
 
@@ -27,10 +30,10 @@ class ToDoEntity {
   ToDoStatusEnum isStatus;
 
 
-  ToDoEntity(this.dateTimeToDoString, this.prorityToDoEnum,
+  ToDoEntity(this.id,this.dateTimeToDoString, this.prorityToDoEnum,
      this.titleToDO, this.subtitleToDO, this.isFavorite, this.isStatus);
 
-  ToDoEntity.todo({required this.dateTimeToDoString, required this.prorityToDoEnum,
+  ToDoEntity.todo({required this.id, required this.dateTimeToDoString, required this.prorityToDoEnum,
     required this.titleToDO, required this.subtitleToDO, this.isFavorite = false, this.isStatus = ToDoStatusEnum
         .none});
 

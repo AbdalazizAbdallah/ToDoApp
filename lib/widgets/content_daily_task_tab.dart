@@ -134,6 +134,7 @@ class ContentDailyTaskTab extends StatelessWidget {
                 ),
                 child: MyToDoWidget(
                   toDo: ToDoEntity.todo(
+                      id: listOfToEntity[index].id,
                       dateTimeToDoString:
                       listOfToEntity[index].dateTimeToDoString,
                       prorityToDoEnum: listOfToEntity[index].prorityToDoEnum,

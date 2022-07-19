@@ -5,13 +5,17 @@ import '../app_constants/constant_app_color.dart';
 
 class CurveDate extends CustomPainter{
 
+
+  Color color;
+  CurveDate({required this.color});
+
   @override
   void paint(Canvas canvas, Size size) {
 
 
 
     Paint paint0 = Paint()
-      ..color = ConstantAppColorsHelper.myGreen
+      ..color = color
       ..style = PaintingStyle.fill;
 
     Path path0 = Path();

@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/helper/app_constants/constant_app_color.dart';
 import 'package:to_do_app/model/to_do.dart';
+import 'package:to_do_app/routes.dart';
 
 import '../helper/app_date_helper.dart';
 import '../helper/constant_helper.dart';
-import '../helper/customs_shape/cuve_date.dart';
+import '../helper/customs_shape/curve_date.dart';
+import '../providers/provider_request_http_to_do.dart';
 
 class MyToDoWidget extends StatelessWidget {
-
-  const MyToDoWidget({
+    MyToDoWidget({
     Key? key,
     this.visibleBadge = false,
     required this.toDo,
-  }) : super(key: key);
+    Color? colorBadge,
+  }) : super(key: key) {
+    this.colorBadge = colorBadge?? ConstantAppColorsHelper.myGreen;
+  }
 
   final ToDoEntity toDo;
   final bool visibleBadge;
+  late final Color colorBadge;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,7 @@ class MyToDoWidget extends StatelessWidget {
               children: [
                 const Expanded(child: SizedBox()),
                 CustomPaint(
-                  painter: CurveDate(),
+                  painter: CurveDate(color: colorBadge),
                   child: Padding(
                     padding: EdgeInsets.only(
                         bottom: 5.h, left: 60.w, top: 5.h, right: 30.w),
@@ -47,6 +54,10 @@ class MyToDoWidget extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              context.read<RequestHttpToDoProvider>().setIdSelected = toDo.id;
+              Navigator.pushNamed(context, RoutesGenerator.taskDetailsPages);
+            },
             contentPadding: EdgeInsets.symmetric(horizontal: 50.w),
             minLeadingWidth: 50.w,
             trailing: Row(
@@ -56,12 +67,14 @@ class MyToDoWidget extends StatelessWidget {
                   onPressed: () {
                     // TODO: star todo
                   },
-                  icon: toDo.isFavorite ? const Icon(
-                    Icons.star,
-                    color: Colors.yellow,
-                  ) : const Icon(
-                    Icons.star_border_rounded,
-                  ),
+                  icon: toDo.isFavorite
+                      ? const Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        )
+                      : const Icon(
+                          Icons.star_border_rounded,
+                        ),
                 ),
                 DecoratedBox(
                   decoration: const BoxDecoration(
@@ -105,8 +118,8 @@ class MyToDoWidget extends StatelessWidget {
                         ?.copyWith(color: Colors.black.withOpacity(0.75)),
                     children: [
                       TextSpan(
-                        text:
-                            AppDateHelper.getPMorAMOfDate(toDo.dateTimeToDoString),
+                        text: AppDateHelper.getPMorAMOfDate(
+                            toDo.dateTimeToDoString),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],

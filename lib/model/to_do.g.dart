@@ -9,9 +9,10 @@ part of 'to_do.dart';
 ToDoEntity _$ToDoEntityFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
-    requiredKeys: const ['title'],
+    requiredKeys: const ['id', 'title'],
   );
   return ToDoEntity(
+    json['id'] as int,
     json['dateTimeToDoString'] as String? ?? AppDateHelper.generateDateTimeRandomly(),
     $enumDecodeNullable(_$ProrityToDoEnumEnumMap, json['prorityToDoEnum']) ??
         ProrityToDoEnum.tooHigh,
@@ -25,6 +26,7 @@ ToDoEntity _$ToDoEntityFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ToDoEntityToJson(ToDoEntity instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'dateTimeToDoString': instance.dateTimeToDoString,
       'prorityToDoEnum': _$ProrityToDoEnumEnumMap[instance.prorityToDoEnum]!,
       'title': instance.titleToDO,

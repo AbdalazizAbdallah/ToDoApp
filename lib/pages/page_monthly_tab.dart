@@ -104,10 +104,9 @@ class _PageMonthlyTabState extends State<PageMonthlyTab> {
                       ),
                     ),
                   ),
-                  for (ToDoEntity item in itemList[index])
-                    MyToDoWidget(
-                      toDo: item,
-                    )
+                  ...itemList[index].map((ToDoEntity element) => 
+                  MyToDoWidget(toDo: element)
+                  )
                 ],
               );
             }),

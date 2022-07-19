@@ -25,6 +25,11 @@ class AppDateHelper {
     String monthDay = DateFormat('MMMM, yyyy').format(pickedDate);
     return monthDay;
   }
+  static String getDateCustomDatMonthYear(String stringDate) {
+    DateTime pickedDate = DateTime.tryParse(stringDate) ?? DateTime.now();
+    String monthDay = DateFormat('dd MMM, yyyy | hh:mm a').format(pickedDate);
+    return monthDay;
+  }
 
   static String getDateMonthMMM(String stringDate) {
     DateTime pickedDate = DateTime.tryParse(stringDate) ?? DateTime.now();
