@@ -36,7 +36,7 @@ class _PageWeeklyTabState extends State<PageWeeklyTab> {
     listOfKey = groupingByDateToDoEntity.keys.toList();
     itemList = groupingByDateToDoEntity.values.toList();
     datOfWeeks =
-        AppDateHelper.getDaysOfWeek(pickedDate: '2022-07-13 22:38:27.654812');
+        AppDateHelper.getDaysOfWeek(pickedDate: '2022-07-25 22:38:27.654812');
   }
 
   @override

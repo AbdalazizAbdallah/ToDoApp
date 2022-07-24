@@ -1,20 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_app/model/to_do.dart';
 import 'package:to_do_app/providers/provider_single_choice_priority.dart';
 
 import '../helper/app_constants/constant_app_color.dart';
+import '../providers/provider_request_http_to_do.dart';
 import '../widgets/app_bar_widget.dart';
 import '../widgets/priority_circle_avatar_widget.dart';
 
-class AddTask extends StatefulWidget {
-  const AddTask({Key? key}) : super(key: key);
+class EditTask extends StatefulWidget {
+  const EditTask({Key? key}) : super(key: key);
 
   @override
-  State<AddTask> createState() => _AddTaskState();
+  State<EditTask> createState() => _EditTaskState();
 }
 
-class _AddTaskState extends State<AddTask> {
+class _EditTaskState extends State<EditTask> {
+  late TextEditingController _taskName;
+  late TextEditingController _descripToDo;
+  late TextEditingController _categoryTask;
+  late TextEditingController _dateTask;
+  late TextEditingController _netTask;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    ToDoEntity? toDo = context.read<RequestHttpToDoProvider>().toDoSelected;
+    _taskName = TextEditingController(text: toDo!.titleToDO);
+    _descripToDo = TextEditingController(
+        text:
+            'Have to meet him because i want to show him my latest app design in person.\nAlso need to ask for advice on these: \n -style \n- interaction \n- copy                    ');
+    _categoryTask = TextEditingController(text: 'friends');
+    _dateTask = TextEditingController(text: toDo.dateTimeToDoString);
+    _netTask = TextEditingController(text: '10 minutes');
+  }
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -25,7 +47,7 @@ class _AddTaskState extends State<AddTask> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(350.h),
           child: const AppBarWidget(
-            title: 'New Task',
+            title: 'Edit Task',
             visibleAddIcon: false,
           ),
         ),
@@ -43,6 +65,9 @@ class _AddTaskState extends State<AddTask> {
                         direction: Axis.vertical,
                         children: [
                           TextFormField(
+                            controller: _taskName,
+                            style: textTheme.headline3
+                                ?.copyWith(fontWeight: FontWeight.w600),
                             decoration: InputDecoration(
                               label: const Text('Task Name'),
                               contentPadding: const EdgeInsets.all(16),
@@ -53,8 +78,16 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           TextFormField(
+                            controller: _descripToDo,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
+                            style: textTheme.headline4?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 36.sp,
+                              height: 1.5,
+                              color: ConstantAppColorsHelper.myLightBlack
+                                  .withOpacity(0.75),
+                            ),
                             decoration: InputDecoration(
                               label: const Text('Description'),
                               contentPadding: const EdgeInsets.all(16),
@@ -65,6 +98,9 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           TextFormField(
+                            controller: _categoryTask,
+                            style: textTheme.subtitle2
+                                ?.copyWith(fontWeight: FontWeight.normal),
                             decoration: InputDecoration(
                               label: const Text('Category'),
                               contentPadding: const EdgeInsets.all(16),
@@ -75,6 +111,9 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           TextFormField(
+                            controller: _dateTask,
+                            style: textTheme.subtitle2
+                                ?.copyWith(fontWeight: FontWeight.normal),
                             decoration: InputDecoration(
                               label: const Text('Pick Date & Time'),
                               contentPadding: const EdgeInsets.all(16),
@@ -133,6 +172,9 @@ class _AddTaskState extends State<AddTask> {
                               .withOpacity(0.33),
                         ),
                         TextFormField(
+                          controller: _netTask,
+                          style: textTheme.subtitle2
+                              ?.copyWith(fontWeight: FontWeight.normal),
                           decoration: InputDecoration(
                             label: const Text('Notification'),
                             contentPadding: const EdgeInsets.all(16),
@@ -154,7 +196,7 @@ class _AddTaskState extends State<AddTask> {
                         borderRadius: BorderRadius.vertical(),
                       ),
                     ),
-                    child: const Text('ADD'),
+                    child: const Text('Edit'),
                   ),
                 ],
               ),
@@ -163,5 +205,17 @@ class _AddTaskState extends State<AddTask> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    _taskName.dispose();
+    _descripToDo.dispose();
+    _categoryTask.dispose();
+    _dateTask.dispose();
+    _netTask.dispose();
   }
 }

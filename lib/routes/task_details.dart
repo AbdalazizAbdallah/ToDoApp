@@ -8,6 +8,7 @@ import 'package:to_do_app/helper/app_date_helper.dart';
 import 'package:to_do_app/helper/customs_shape/curve_date.dart';
 
 import '../providers/provider_request_http_to_do.dart';
+import '../routes.dart';
 import '../widgets/app_bar_widget.dart';
 
 class TaskDetails extends StatefulWidget {
@@ -120,6 +121,51 @@ class _TaskDetailsState extends State<TaskDetails> {
                   ),
                 ),
               ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Material(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.delete_outline,
+                        size: 30,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                    Navigator.pushNamed(context, RoutesGenerator.editTaskPages);
+
+                      },
+                      icon: const Icon(
+                        Icons.edit_outlined,
+                        size: 30,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.schedule,
+                        size: 30,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.task_alt,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           )
         ],
