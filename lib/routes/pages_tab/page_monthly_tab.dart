@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../helper/app_constants/constant_app_color.dart';
-import '../helper/app_date_helper.dart';
-import '../helper/constant_helper.dart';
-import '../model/to_do.dart';
-import '../widgets/to_do_widget.dart';
+import '../../helper/app_constants/constant_app_color.dart';
+import '../../helper/app_date_helper.dart';
+import '../../helper/constant_helper.dart';
+import '../../model/to_do.dart';
+import '../../widgets/to_do_widget.dart';
 
 class PageMonthlyTab extends StatefulWidget {
   const PageMonthlyTab({
@@ -52,7 +52,7 @@ class _PageMonthlyTabState extends State<PageMonthlyTab> {
                   margin: const EdgeInsets.all(4.0),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(10.0)),
                   child: Text(
                     date.day.toString(),
@@ -74,6 +74,9 @@ class _PageMonthlyTabState extends State<PageMonthlyTab> {
               formatButtonVisible: false,
             ),
             calendarStyle: const CalendarStyle(
+                disabledDecoration: BoxDecoration(
+                  color: Colors.white,
+                ),
                 canMarkersOverflow: true,
                 todayTextStyle: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -104,7 +107,7 @@ class _PageMonthlyTabState extends State<PageMonthlyTab> {
                       ),
                     ),
                   ),
-                  ...itemList[index].map((ToDoEntity element) => 
+                  ...itemList[index].map((ToDoEntity element) =>
                   MyToDoWidget(toDo: element)
                   )
                 ],

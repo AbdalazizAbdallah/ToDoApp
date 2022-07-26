@@ -56,7 +56,7 @@ class MyToDoWidget extends StatelessWidget {
           ListTile(
             onTap: () {
               context.read<RequestHttpToDoProvider>().setIdSelected = toDo.id;
-              Navigator.pushNamed(context, RoutesGenerator.taskDetailsPages);
+              Navigator.pushNamed(context, RoutesGenerator.taskDetailsPage);
             },
             contentPadding: EdgeInsets.symmetric(horizontal: 50.w),
             minLeadingWidth: 50.w,

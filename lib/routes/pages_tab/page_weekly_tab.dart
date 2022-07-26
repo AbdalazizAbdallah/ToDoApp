@@ -7,9 +7,10 @@ import 'package:to_do_app/helper/constant_helper.dart';
 import 'package:to_do_app/helper/customs_shape/curve_date.dart';
 import 'package:to_do_app/widgets/to_do_widget.dart';
 
-import '../helper/app_date_helper.dart';
-import '../helper/customs_shape/curve_date_weekly.dart';
-import '../model/to_do.dart';
+import '../../helper/app_date_helper.dart';
+import '../../helper/customs_shape/curve_date_weekly.dart';
+import '../../model/to_do.dart';
+
 
 class PageWeeklyTab extends StatefulWidget {
   const PageWeeklyTab({Key? key,

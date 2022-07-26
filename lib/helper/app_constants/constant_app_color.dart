@@ -11,4 +11,7 @@ class ConstantAppColorsHelper {
   static Color myGray = const Color(0xFFF6F6F8);
   static Color myGrayScaffold = const Color(0xFFEFEFEF);
   static Color myLightBlack = const Color(0xFF172735);
+  static Color facebookLogoColor = const Color(0xFF3B5998);
+  static Color twitterLogoColor = const Color(0xFF1DA1F2);
+  static Color googlePlusLogoColor = const Color(0xFFDD4B39);
 }

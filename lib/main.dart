@@ -8,7 +8,7 @@ import 'helper/app_constants/constant_app_themes.dart';
 import 'model/to_do.dart';
 
 void main() {
-  runApp(const MyApp()); 
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,16 +21,14 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider<RequestHttpToDoProvider>(create: (context) => RequestHttpToDoProvider()),
+            ChangeNotifierProvider<RequestHttpToDoProvider>(
+                create: (context) => RequestHttpToDoProvider()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ConstantAppThemes.themeDataPrimaryLight,
-            supportedLocales: const [
-              Locale('en'),
-            ],
-            initialRoute: RoutesGenerator.homePage,
+            initialRoute: RoutesGenerator.loginPage,
             onGenerateRoute: RoutesGenerator.generateRoutes,
           ),
         );

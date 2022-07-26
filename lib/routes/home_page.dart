@@ -1,17 +1,16 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/providers/provider_request_http_to_do.dart';
 import 'package:to_do_app/routes.dart';
+import 'package:to_do_app/routes/pages_tab/page_daily_tab.dart';
+import 'package:to_do_app/routes/pages_tab/page_monthly_tab.dart';
+import 'package:to_do_app/routes/pages_tab/page_weekly_tab.dart';
 import '../helper/app_constants/constant_app_color.dart';
 
 import '../helper/app_constants/constant_app_images.dart';
-import '../pages/page_daily_tab.dart';
-import '../pages/page_monthly_tab.dart';
-import '../pages/page_weekly_tab.dart';
 import '../widgets/item_of_drawer.dart';
 import '../widgets/my_drawer_header_widget.dart';
 
@@ -170,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushNamed(context, RoutesGenerator.doneTaskPages);
+                    Navigator.pushNamed(context, RoutesGenerator.doneTaskPage);
 
                     //TODO : ADD Done
                   },
@@ -184,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     //TODO : ADD later
                      Navigator.pop(context);
-                    Navigator.pushNamed(context, RoutesGenerator.laterTaskPages);
+                    Navigator.pushNamed(context, RoutesGenerator.laterTaskPage);
 
                   },
                 ),

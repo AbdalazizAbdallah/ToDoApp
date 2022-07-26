@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/model/to_do.dart';
 import 'package:to_do_app/widgets/content_daily_task_tab.dart';
-import '../widgets/content_daily_all_task_done_tab.dart';
+import '../../widgets/content_daily_all_task_done_tab.dart';
 
 class PageDailyTab extends StatelessWidget {
   const PageDailyTab({

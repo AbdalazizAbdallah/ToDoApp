@@ -141,7 +141,7 @@ class _TaskDetailsState extends State<TaskDetails> {
                     ),
                     IconButton(
                       onPressed: () {
-                    Navigator.pushNamed(context, RoutesGenerator.editTaskPages);
+                    Navigator.pushNamed(context, RoutesGenerator.editTaskPage);
 
                       },
                       icon: const Icon(
